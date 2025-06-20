@@ -1,0 +1,174 @@
+/* Add this CSS to your header.php file or a separate dark-mode.css file */
+
+/* Light mode defaults (for reference) */
+:root {
+    --primary-color: #6c63ff;
+    --secondary-color: #f9f9fa;
+    --text-color: #333;
+    --light-text: #777;
+    --accent-color: #ff6584;
+    --bg-color: #ffffff;
+    --card-bg: #ffffff;
+    --border-color: #e9ecef;
+    --footer-bg: #f8f9fa;
+    --input-bg: #ffffff;
+    --input-border: #ced4da;
+}
+
+/* Dark mode color variables */
+body.dark-mode {
+    --primary-color: #8c83ff;
+    --secondary-color: #222;
+    --text-color: #f8f9fa;
+    --light-text: #adb5bd;
+    --accent-color: #ff7a9c;
+    --bg-color: #121212;
+    --card-bg: #1e1e1e;
+    --border-color: #333;
+    --footer-bg: #1a1a1a;
+    --input-bg: #2d2d2d;
+    --input-border: #444;
+    
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+/* Card and container styles */
+.dark-mode .card,
+.dark-mode .editor-container,
+.dark-mode .sidebar-container {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+.dark-mode .card-footer {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-color: var(--border-color);
+}
+
+/* Navigation styles */
+.dark-mode .navbar {
+    background-color: var(--card-bg) !important;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.dark-mode .navbar-light .navbar-nav .nav-link {
+    color: var(--text-color);
+}
+
+.dark-mode .navbar-light .navbar-brand {
+    color: var(--primary-color);
+}
+
+.dark-mode .dropdown-menu {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+.dark-mode .dropdown-item {
+    color: var(--text-color);
+}
+
+.dark-mode .dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.dark-mode .dropdown-divider {
+    border-color: var(--border-color);
+}
+
+/* Tab navigation */
+.dark-mode .nav-tabs {
+    border-color: var(--border-color);
+}
+
+.dark-mode .nav-tabs .nav-link.active {
+    background-color: var(--card-bg);
+    color: var(--primary-color);
+    border-color: var(--border-color) var(--border-color) var(--card-bg);
+}
+
+.dark-mode .nav-tabs .nav-link:not(.active) {
+    color: var(--text-color);
+}
+
+/* Footer styles */
+.dark-mode .footer {
+    background-color: var(--footer-bg);
+    border-top-color: var(--border-color);
+}
+
+.dark-mode .footer .nav-link {
+    color: var(--text-color);
+}
+
+.dark-mode .footer a:hover {
+    color: var(--primary-color);
+}
+
+/* Form elements */
+.dark-mode .form-control,
+.dark-mode .form-select {
+    background-color: var(--input-bg);
+    border-color: var(--input-border);
+    color: var(--text-color);
+}
+
+.dark-mode .form-check-input {
+    background-color: var(--input-bg);
+    border-color: var(--input-border);
+}
+
+.dark-mode .form-check-input:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* Buttons */
+.dark-mode .btn-outline-primary {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.dark-mode .btn-outline-primary:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.dark-mode .btn-light {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+/* List groups */
+.dark-mode .list-group-item {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+/* Story elements */
+.dark-mode .story-meta {
+    color: var(--light-text);
+}
+
+.dark-mode .badge.bg-light {
+    background-color: #333 !important;
+    color: var(--light-text) !important;
+}
+
+/* Transitions for smoother theme switching */
+body, 
+.card, 
+.editor-container, 
+.sidebar-container,
+.navbar,
+.dropdown-menu,
+.form-control,
+.btn,
+.nav-tabs,
+.list-group-item,
+.footer {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
