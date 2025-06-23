@@ -8,7 +8,6 @@ A creative community for writers to share, grow and inspire each other. StoryNes
 - [Features](#features)
 - [Getting Started](#getting-started)
 - [Usage](#usage)
-- [Screenshots](#screenshots)
 - [Contributing](#contributing)
 - [License](#license)
 - [Contact](#contact)
