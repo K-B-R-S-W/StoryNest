@@ -29,6 +29,7 @@ A creative community for writers to share, grow and inspire each other. StoryNes
 - **Notifications**: Stay updated on likes, follows, and challenges.
 - **Newsletter**: Opt-in for weekly writing tips and highlights.
 - **Responsive Design**: Works on desktop and mobile devices.
+- **StoryNest AI Chat Widget**: Chat with the StoryNest AI assistant for writing help and inspiration.
 
 ---
 
