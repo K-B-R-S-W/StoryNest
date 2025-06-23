@@ -1,0 +1,96 @@
+<!-- StoryNest AI Chat Widget -->
+<style>
+#chat-widget-img {
+    position: fixed; bottom: 24px; right: 24px; width: 90px; height: 90px; border-radius: 50%; box-shadow: 0 4px 16px rgba(0,0,0,0.2); cursor: pointer; z-index: 1000; object-fit: cover; border: 3px solid #fff;
+}
+#chat-widget {
+    display: none; position: fixed; bottom: 120px; right: 24px; width: 400px; max-width: 97vw; height: 520px; background: #fff; border-radius: 16px; box-shadow: 0 4px 32px rgba(0,0,0,0.18); z-index: 1001; flex-direction: column; overflow: hidden;
+}
+#chat-header { background: #6c47ff; color: #fff; padding: 16px; font-weight: bold; }
+#chat-messages {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+    background: #f7f7fa;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+#chat-input-container { display: flex; border-top: 1px solid #eee; }
+#chat-input { flex: 1; padding: 10px; border: none; outline: none; }
+#chat-send { background: #6c47ff; color: #fff; border: none; padding: 0 20px; cursor: pointer; }
+.message-row {
+    display: flex;
+    width: 100%;
+}
+.message-row.user {
+    justify-content: flex-end;
+}
+.message-row.ai {
+    justify-content: flex-start;
+}
+.user-message, .ai-message {
+    max-width: 80%;
+    padding: 8px 14px;
+    border-radius: 12px;
+    margin: 0;
+    word-break: break-word;
+}
+.user-message {
+    background: #e0e0ff;
+    color: #6c47ff;
+    border-radius: 12px 12px 0 12px;
+    text-align: right;
+}
+.ai-message {
+    background: #f1f1f1;
+    color: #222;
+    border-radius: 12px 12px 12px 0;
+    text-align: left;
+}
+</style>
+<img id="chat-widget-img" src="/StoryNest/assets/images/Ai.jpg" alt="Chat with StoryNest AI" title="Chat with StoryNest AI" />
+<div id="chat-widget">
+    <div id="chat-header">StoryNest AI</div>
+    <div id="chat-messages"></div>
+    <div id="chat-input-container">
+        <input id="chat-input" type="text" placeholder="Type your message..." />
+        <button id="chat-send">Send</button>
+    </div>
+</div>
+<script>
+const widgetImg = document.getElementById('chat-widget-img');
+const widget = document.getElementById('chat-widget');
+const messagesDiv = document.getElementById('chat-messages');
+const input = document.getElementById('chat-input');
+const sendBtn = document.getElementById('chat-send');
+widgetImg.onclick = () => { widget.style.display = widget.style.display === 'flex' ? 'none' : 'flex'; widget.style.flexDirection = 'column'; };
+sendBtn.onclick = sendMessage;
+input.addEventListener('keypress', function(e) { if (e.key === 'Enter') sendMessage(); });
+function appendMessage(text, sender) {
+    const row = document.createElement('div');
+    row.className = 'message-row ' + (sender === 'user' ? 'user' : 'ai');
+    const msg = document.createElement('div');
+    msg.className = sender === 'user' ? 'user-message' : 'ai-message';
+    msg.textContent = (sender === 'user' ? 'You: ' : 'StoryNest: ') + text;
+    row.appendChild(msg);
+    messagesDiv.appendChild(row);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+}
+async function sendMessage() {
+    const text = input.value.trim();
+    if (!text) return;
+    appendMessage(text, 'user');
+    input.value = '';
+    // Use JWT from login and send in Authorization header if available
+    const token = localStorage.getItem('access_token');
+    const headers = { 'Content-Type': 'application/json' };
+    if (token) headers['Authorization'] = 'Bearer ' + token;
+    try {
+        const res = await fetch('http://localhost:8000/chat', { method: 'POST', headers, body: JSON.stringify({ message: text }) });
+        const data = await res.json();
+        appendMessage(data.content || data.error || 'No response', 'ai');
+    } catch (e) { appendMessage('Error contacting AI', 'ai'); }
+}
+</script>
+<!-- End StoryNest AI Chat Widget --> 
