@@ -12,6 +12,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/darkmode.css">
+    <link rel="icon" type="image/jpeg" href="/StoryNest/assets/images/Ai.jpg">
         </main><!-- Close the main content section -->
         
         <!-- Modified footer section with dark mode toggle -->
@@ -225,4 +226,14 @@
 </script>
         </script>
     </body>
+</html>
+
+<?php
+// Only include the chat widget if not on login or register page
+$currentFile = basename($_SERVER['SCRIPT_NAME']);
+if ($currentFile !== 'login.php' && $currentFile !== 'register.php') {
+    include __DIR__ . '/chat-widget.html';
+}
+?>
+</body>
 </html>

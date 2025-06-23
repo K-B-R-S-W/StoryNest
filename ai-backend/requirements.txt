@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+langgraph
+groq
+langchain_groq
+langchain_core
+pydantic
+mysql-connector-python
+python-jose
+passlib[bcrypt] 
